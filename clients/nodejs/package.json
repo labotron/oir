@@ -1,6 +1,6 @@
 {
   "name": "odt-image-replacer-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js client for ODT Image Replacer API",
   "main": "index.js",
   "types": "index.d.ts",
@@ -14,7 +14,11 @@
     "document",
     "api-client"
   ],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/labotron/oir.git"
+  },
+  "author": "matee@labotron.co.th",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0"
