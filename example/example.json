@@ -1,0 +1,12 @@
+{
+  "template": {
+    "url": "url or null",
+    "base64": "url or null"
+  },
+  "data": {
+    "image1": {
+      "url": "url or null",
+      "base64": "url or null"
+    }
+  }
+}

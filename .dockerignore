@@ -1,0 +1,75 @@
+# .dockerignore - Files to exclude from Docker build context
+
+# Git
+.git/
+.gitignore
+.github/
+
+# Documentation
+*.md
+!README.md
+docs/
+EXAMPLES.md
+REFACTORING.md
+SUMMARY.md
+API.md
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+odt-api
+odt-replacer
+*.test
+*.out
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test files
+*_test.go
+test.odt
+report.odt
+output*.odt
+
+# Examples
+exmaple/
+clients/nodejs/node_modules/
+clients/nodejs/package-lock.json
+
+# Temporary files
+*.tmp
+*.log
+tmp/
+temp/
+
+# Node.js (if applicable)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Go
+vendor/
+go.work
+go.work.sum
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+Jenkinsfile
+
+# Coverage
+*.cover
+coverage.txt
+coverage.html

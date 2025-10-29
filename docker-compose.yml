@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  # ODT Image Replacer API Service
+  odt-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - BUILD_DATE=${BUILD_DATE:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}
+    image: odt-image-replacer-api:latest
+    container_name: odt-api
+
+    # Restart policy
+    restart: unless-stopped
+
+    # Ports
+    ports:
+      - "${API_PORT:-8080}:8080"
+
+    # Environment variables
+    environment:
+      - GIN_MODE=${GIN_MODE:-release}
+      - PORT=8080
+      - HOST=0.0.0.0
+      - TZ=${TZ:-UTC}
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+    # Logging
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+
+    # Read-only root filesystem (for security)
+    read_only: false  # Set to true if you don't need write access
+
+    # Temporary directories
+    tmpfs:
+      - /tmp:size=100M,mode=1777
+
+    # Networks
+    networks:
+      - odt-network
+
+networks:
+  odt-network:
+    driver: bridge
+    name: odt-network
+
+# Volume for persistent data (if needed)
+# volumes:
+#   odt-data:
+#     name: odt-data
